@@ -1,0 +1,27 @@
+分类和类的扩展区别
+ios中分类就是category  
+是一个指向分类的结构体指针
+#import <objc/runtime.h>
+typedef struct objc_category *Category
+struct objc_category{
+   char *  _Nonnull category_name   //分类名
+   char *  _Nonnull class_name  // 分类所属的类名
+   struct objc_method_list * _Nullable instance_methods  //实例方法列表
+   struct objc_method_list * _Nullable class_methods //类方法列表 
+   struct objc_protocol_list * _Nullable protocols //分类实现的协议列表
+}
+没有属性列表! 没有属性列表!
+在分类中添加@property,不能生成setter,getter方法,也不会生成成员变量
+编译器不会报错
+可以通过关联对象objc_setAssociatedObject,objc_getAssociatedObject来添加setter,getter方法
+但是不能生成成员变量
+类扩展
+在.m文件下生成
+@interface xxxx()
+@end
+可以添加setter/getter方法,成员变量
+区别:
+  1.category添加属性可以通过runtime添加setter/getter方法
+    类扩展可以添加属性,方法
+  2.类扩展是在编译阶段添加到类中,category是在运行中添加到类的
+ 
