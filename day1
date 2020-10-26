@@ -11,6 +11,7 @@ struct objc_category{
    struct objc_protocol_list * _Nullable protocols //分类实现的协议列表
 }
 没有属性列表! 没有属性列表!
+category里面的方法会比父类的先执行,应为在方法列表里面,category生成的方法在数组的前面
 在分类中添加@property,不能生成setter,getter方法,也不会生成成员变量
 编译器不会报错
 可以通过关联对象objc_setAssociatedObject,objc_getAssociatedObject来添加setter,getter方法
